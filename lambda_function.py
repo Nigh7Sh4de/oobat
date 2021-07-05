@@ -1,12 +1,17 @@
 import json
-from random_word import RandomWords
+import random
 
-def lambda_handler(event, context):
+f = open("google-large.txt", "r")
+lines = f.readlines()
 
-    word = r.get_random_word(includePartOfSpeech="noun")
 
-    # TODO implement
+def lambda_handler():
+    i = random.randint(0,len(lines))
+
     return {
         'statusCode': 200,
-        'body': json.dumps({'word': word})
+        'body': json.dumps({'word': lines[i].strip()})
     }
+
+if __name__ == "__main__":
+    print(lambda_handler())
