@@ -5,6 +5,14 @@ nlp = spacy.load("en_core_web_lg")
 f = open("google-large.txt", "r")
 lines = f.readlines()
 
+def my_dict(i):
+    out = open("result" + str(i) + ".json", "w")
+    result = [
+        {'word': w.strip(), 'similar': my_similar(w.strip())} for w in lines[1000*i:1000+1000*i]
+    ]
+    out.write(json.dumps(result))
+
+
 def overlap(w, word):
     if w in word: return True
     if word in w: return True
@@ -31,4 +39,4 @@ def lambda_handler():
     }
 
 if __name__ == "__main__":
-    print(lambda_handler())
+    print(my_dict(9))
