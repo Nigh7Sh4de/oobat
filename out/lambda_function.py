@@ -3,7 +3,7 @@ import random
 f = open("result.json", "r")
 data = json.load(f)
 
-def lambda_handler():
+def lambda_handler(event, lambda_context):
     i = random.randint(0,len(data))
     result = data[i]
     print(result)
